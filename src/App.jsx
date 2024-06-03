@@ -8,7 +8,10 @@ import PrivateProfile from './pages/PrivateProfile'
 import Header from './components/Header'
 import { createContext, useState } from 'react'
 import '@mantine/core/styles.css';
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, createTheme, virtualColor } from '@mantine/core';
+import Dashboard from './pages/Dashboard'
+import { ProfileList } from './pages/ProfilesList'
+import AddActivity from './pages/AddActivity'
 
 const AuthContext = createContext();
 
@@ -17,6 +20,12 @@ const loadUserDataFromStorage = () => {
   if (userVal !== undefined || userVal !== null) return JSON.parse(userVal);
   return null;
 };
+
+const theme = createTheme({
+  colors: {
+    primary: virtualColor({ name: 'primary', light: 'red', dark: 'red' }),
+  },
+});
 
 function App() {
   const [user, setUser] = useState(loadUserDataFromStorage());
@@ -43,16 +52,19 @@ function App() {
   };
 
   return (
-    <MantineProvider>
+    <MantineProvider theme={theme}>
       <AuthContext.Provider value={{ user, login, logout }}>
           <Header />
           <div className='app-container'>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/addactivity" element={<AddActivity />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<PrivateProfile />} />
             <Route path="/profile/:username" element={<PublicProfile />} />
+            <Route path="/profiles" element={<ProfileList />} />
           </Routes>
         </div>
       </AuthContext.Provider>

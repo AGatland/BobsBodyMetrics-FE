@@ -1,0 +1,20 @@
+.card {
+    background-color: #242424;
+  }
+  
+  .avatar {
+    border: rem(2px) solid var(--mantine-color-body);
+  }
+  
+  .mainLinks {
+    border-bottom: 1px solid white;
+  }
+  
+  .mainLink {
+    text-transform: uppercase;
+    
+    &[data-active] {
+      color: rgba(255, 255, 255, 0.87);
+      padding-bottom: 10px;
+    }
+  }

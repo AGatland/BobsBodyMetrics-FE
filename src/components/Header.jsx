@@ -24,12 +24,15 @@ import { Link, useNavigate } from 'react-router-dom';
               <Link to="/" className={classes.link}>
                 Home
               </Link>
-              <a href="#" className={classes.link}>
-                Learn
-              </a>
-              <a href="#" className={classes.link}>
-                Academy
-              </a>
+              <Link to="/dashboard" className={classes.link}>
+                Dashboard
+              </Link>
+              <Link to="/profiles" className={classes.link}>
+                Profiles
+              </Link>
+              <Link to="/addactivity" className={classes.link}>
+                Add Activity
+              </Link>
             </Group>
 
             {!user ? (
@@ -41,7 +44,7 @@ import { Link, useNavigate } from 'react-router-dom';
           (
             <Group visibleFrom="sm">
               <Button variant="default" onClick={() => logout()}>Log out</Button>
-              <Button onClick={() => navigate("/profile/"+user.userName.toLowerCase())}>{user.userName}</Button>
+              <Button onClick={() => navigate("/profile")}>{user.userName}</Button>
             </Group>
           )
           }
